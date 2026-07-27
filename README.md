@@ -1,37 +1,53 @@
+# Student GPA Prediction — ML Project
 
-```markdown
-# ML PROJECT: Student Academic Performance Prediction
+## Overview
 
-## Project Overview
-This project focuses on predicting student academic performance (GPA) using Machine Learning techniques. The dataset was obtained from Kaggle and preprocessed using Pandas. The GPA column was selected as the target variable, while the remaining student-related features were used as input variables. The dataset was split into training and testing sets to evaluate model performance. Two regression algorithms, Linear Regression and Random Forest Regressor, were implemented and compared using Mean Squared Error (MSE) and R² Score metrics. The project also includes data visualization to compare actual and predicted GPA values, providing insights into the accuracy of the models. The objective of this project is to explore how machine learning can be used to analyze student data and predict academic outcomes effectively.
+This project predicts student academic performance (GPA) using machine learning. It uses a student performance dataset from Kaggle, with GPA as the target variable and the remaining student attributes as input features. Two regression models — **Linear Regression** and **Random Forest Regressor** — are trained, evaluated, and compared to see how well each can predict GPA from the available features.
 
-## Data Source
-The dataset used in this project is the 'student-performance-data' from Kaggle, downloaded from the user 'muhammadazam121'. The file name is `Student_performance_data.csv`.
+## Dataset
 
-## Data Preparation
-1.  **Data Separation**: The target variable, 'GPA', was separated from the feature set. `y` represents the 'GPA' and `x` contains all other features.
-2.  **Data Splitting**: The dataset was split into training and testing sets using `train_test_split` from `sklearn.model_selection`, with a `test_size` of 0.2 and `random_state` set to 100.
+- **Source:** [Student Performance Dataset on Kaggle](https://www.kaggle.com/datasets/muhammadazam121/student-performance-data)
+- **File:** `Student_performance_data.csv`
+- **Target variable:** `GPA`
+- **Features:** all remaining columns in the dataset
 
-## Model Building
-Two regression models were implemented:
+## Workflow
 
-### Linear Regression
--   **Training**: A `LinearRegression` model was trained on the `x_train` and `y_train` datasets.
--   **Prediction**: Predictions were made on both the training (`y_lr_train_pred`) and testing (`y_lr_test_pred`) sets.
--   **Evaluation**: The model's performance was evaluated using Mean Squared Error (MSE) and R² Score.
+1. **Load Data**
+   - Downloads the dataset from Kaggle via the Kaggle API (requires a `kaggle.json` API key).
+   - Loads the CSV into a Pandas DataFrame.
 
-### Random Forest Regressor
--   **Training**: A `RandomForestRegressor` model was trained with `max_depth = 2` and `random_state = 100` on the `x_train` and `y_train` datasets.
--   **Prediction**: Predictions were made on both the training (`y_rf_train_pred`) and testing (`y_rf_test_pred`) sets.
--   **Evaluation**: The model's performance was evaluated using Mean Squared Error (MSE) and R² Score.
+2. **Data Preparation**
+   - Separates the target (`GPA`) from the input features.
+   - Splits the data into training and test sets (80/20 split, `random_state=100`).
 
-## Model Comparison
-The performance of both models was compared using their respective training and testing MSE and R² scores, summarized in a Pandas DataFrame:
+3. **Model Building**
+   - **Linear Regression** — trained on the training set, evaluated on train/test.
+   - **Random Forest Regressor** — trained with `max_depth=2`, `random_state=100`, evaluated on train/test.
 
-| Method            | Training MSE | Training R2 | Test MSE   | Test R2    |
-|:------------------|:-------------|:------------|:-----------|:-----------|
-| Linear regression | 0.035252     | 0.957677    | 0.039097   | 0.954222   |
-| Random Forest     | 0.140214     | 0.831662    | 0.167847   | 0.803471   |
+4. **Model Evaluation**
+   - Metrics used: **Mean Squared Error (MSE)** and **R² Score**.
+   - Results for both models are compiled into a comparison table.
 
-## Data Visualization
-A scatter plot was generated to visualize the actual vs. predicted GPA values for both training and testing data using `matplotlib.pyplot`, providing a clear comparison of the model's accuracy.
+5. **Data Visualization**
+   - Scatter plot of actual vs. predicted GPA (training and test data) to visually assess model accuracy.
+
+## Requirements
+
+- Python 3
+- pandas
+- scikit-learn
+- matplotlib
+- kaggle (for dataset download)
+
+## Setup & Usage
+
+1. Get a Kaggle API token (`kaggle.json`) from your Kaggle account settings.
+2. Run the notebook cells in order:
+   - Upload `kaggle.json` when prompted (or place it in `~/.kaggle/`).
+   - The notebook downloads and unzips the dataset automatically.
+3. Run through data preparation, model training, evaluation, and visualization cells sequentially.
+
+## Results
+
+The notebook outputs a comparison table with Training/Test MSE and R² scores for both Linear Regression and Random Forest, along with a scatter plot comparing actual vs. predicted GPA values.
